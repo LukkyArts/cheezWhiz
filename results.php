@@ -1,5 +1,7 @@
 <?php 
 
+$active_pet_name = "<u>Chimaera</u>"; // Remove
+
 //Array table that holds all possible results from the action() function. 
 //Option 0 is a duplicate of Option 20 on purpose. Each choice shares the first and last choices with their neighbors. 
 
@@ -13,7 +15,7 @@ $results = array(
 	array(4, "... the audience roars with applause!"),
 	array(6, "the cheese bounces around as it rolls quickly down the slope!"),
 	array(10, "... and the cheese gets stuck down a pothole.. uggh, that took 6 seconds to get it free :\("),
-	array(2, "flavor_text_2"),
+	array(2, "... a Plushie Varwolf runs by and farts loudly, encouraging you to run faster to escape, saving you three seconds!"),
 	array(4, "... good thing you avoided that low branch, eh?"),
 	array(6, "... the cheese bounces merrily down the slope towards the finish line"),
 	array(9, "... and a big rock is jutting out of the ground to the right ... SLAM!!! - That\'s going to cost at least five more seconds"),
