@@ -28,44 +28,36 @@ $results = array(
 	array(8, "It\'s a hot day and the sticky cheese is causing it to roll slower, that\'s going to cut your time down by at least 2-4 seconds!"),
 	array(11, "right into a low branch... SLAM!, that\'s going to cost you six seconds"),
 	);
-	
-	
-	
-function turn($choice) {
+
+
+
+function roller($choice) {
 	switch ($choice) {
-		case $choice = "Forward Somersault":
+		case $choice === "Forward Somersault":
 			$set_roll = rand(0, 4);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
 			echo "Roll: " . $roll . "<br>"; //remove
-		
-	/* === */
-			$set_outcome = $results[$roll][1];
-			$_SESSION['outcome'] = $set_outcome;
-			$outcome = $_SESSION['outcome'];
-			echo "Outcome: " . $outcome . "<br>";
-	/* === */
-		
 			break;
-		case $choice = "Push Cheese Faster":
+		case $choice === "Push Cheese Faster":
 			$set_roll = rand(4, 8);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
 			echo "Roll: " . $roll . "<br>"; //remove
 			break;
-		case $choice = "Hold Cheese Steady":
+		case $choice === "Hold Cheese Steady":
 			$set_roll = rand(8, 12);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
 			echo "Roll: " . $roll . "<br>"; //remove
 			break;
-		case $choice = "Dive Left":
+		case $choice === "Dive Left":
 			$set_roll = rand(12, 16);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
 			echo "Roll: " . $roll . "<br>"; //remove
 			break;
-		case $choice = "Dive Right":
+		case $choice === "Dive Right":
 			$set_roll = rand(16, 20);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
@@ -82,42 +74,15 @@ function turn($choice) {
 
 /*
 
+			$set_outcome = $results[$roll][1];
+			$_SESSION['outcome'] = $set_outcome;
+			$outcome = $_SESSION['outcome'];
+			echo "Outcome: " . $outcome . "<br>";
 
 
 
-case $choice = "Push Cheese Faster":
-		$roll = rand(4, 8);
-		
-		$seconds = $results[$roll][0];
-		echo "Roll: " . $roll . "<br>"; //remove
-		echo "Time penalty: " . $results[$roll][0] . "<br>"; //remove
-		echo $results[$roll][1];
-		return $roll;
-		break;
-	case $choice = "Hold Cheese Steady":
-		$roll = rand(8, 12);
-		$seconds = $results[$roll][0];
-		echo "Roll: " . $roll . "<br>"; //remove
-		echo "Time penalty: " . $results[$roll][0] . "<br>"; //remove
-		echo $results[$roll][1];
-		return $roll;
-		break;
-	case $choice = "Dive Left":
-		$roll = rand(12, 16);
-		$seconds = $results[$roll][0];
-		echo "Roll: " . $roll . "<br>"; //remove
-		echo "Time penalty: " . $results[$roll][0] . "<br>"; //remove
-		echo $results[$roll][1];
-		return $roll;
-		break;
-	case $choice = "Dive Right":
-		$roll = rand(16, 20);
-		$seconds = $results[$roll][0];
-		echo "Roll: " . $roll . "<br>"; //remove
-		echo "Time penalty: " . $results[$roll][0] . "<br>"; //remove
-		echo $results[$roll][1];
-		return $roll;
-		break;
+
+
 
 
 
@@ -137,11 +102,7 @@ case $choice = "Push Cheese Faster":
 
 
 function turn($roll) {
-	global $results;
-	global $penalty;
-	global $user_cheese;
-	global $price;
-	global $bonus;
+
 	$turn = &$turn + 1;
 	$distance = &$distance - 10;
 	$jackpot = &$jackpot - (30 * $results[$roll][0]) - $penalty;

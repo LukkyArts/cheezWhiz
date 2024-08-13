@@ -68,53 +68,33 @@ if (isset($_POST['cheese']) && !empty($_POST['cheese'])) {
 		switch ($price) {
 			case $price >= 5000:
 			$set_bonus = 50; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
 			$set_penalty = 3; 			
-			$_SESSION['penalty'] = $set_penalty;
-			$penalty = $_SESSION['penalty'];
 			break;
 		case $price >= 4000:
 			$set_bonus = 40; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
 			$set_penalty = 2; 			
-			$_SESSION['penalty'] = $set_penalty;
-			$penalty = $_SESSION['penalty'];
 			break;
 		case $price >= 3000:
 			$set_bonus = 30; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
 			$set_penalty = 1; 			
-			$_SESSION['penalty'] = $set_penalty;
-			$penalty = $_SESSION['penalty'];
 			break;
 		case $price >= 2000:
 			$set_bonus = 20; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
 			$set_penalty = 0; 			
-			$_SESSION['penalty'] = $set_penalty;
-			$penalty = $_SESSION['penalty'];
 			break;
 		case $price >= 1000:
 			$set_bonus = 10; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
 			$set_penalty = -1; 			
-			$_SESSION['penalty'] = $set_penalty;
-			$penalty = $_SESSION['penalty'];
 			break;
 		default:
 			$set_bonus = 0; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
 			$set_penalty = -2; 			
-			$_SESSION['penalty'] = $set_penalty;
-			$penalty = $_SESSION['penalty'];
 			break;
 		}
+	$_SESSION['bonus'] = $set_bonus;
+	$bonus = $_SESSION['bonus'];
+	$_SESSION['penalty'] = $set_penalty;
+	$penalty = $_SESSION['penalty'];
 	}
 	echo "<center><b>Cheese:</b> $cheese <br>";
 	echo "<b>Price: $price <br>";

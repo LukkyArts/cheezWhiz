@@ -5,12 +5,14 @@ $distance = 120; 	// Decreased by 10 each turn
 $time = 0; 			// Increases by $seconds + $penalty each turn
 $turn = 0; 			// Counts up to 12
 
+$cheese = "";
 $price = ""; 		// Price of $user_cheese, 
 $bonus = ""; 		// Jackpot boost, decided by cheese price
 $penalty = ""; 		// Time penalty, decided by cheese price
 
+$choice = "";		// Action the user takes on each turn
 $roll = ""; 		// Number to search $results 2D array
-$results = "";
+$outcome = "";		// The flavor text that gets posted. 
 $seconds = ""; 		// Time the turn takes. Decided by $roll
 
 
@@ -32,11 +34,15 @@ echo "<br>Jackpot: " . $_SESSION["jackpot"];
 echo "<br>Distance: " . $_SESSION["distance"];
 echo "<br>Time: " . $_SESSION["time"];
 echo "<br>Turn: " . $_SESSION["turn"];
+
 echo "<br>Cheese: " . $_SESSION["cheese"];
 echo "<br>Price: " . $_SESSION["price"];
 echo "<br>Bonus: " . $_SESSION["bonus"];
 echo "<br>Penalty: " . $_SESSION["penalty"];
+
+echo "<br>Choice: " . $_SESSION["choice"];
 echo "<br>Roll: " . $_SESSION["roll"];
+echo "<br>Outcome: " . $_SESSION["outcome"];
 echo "<br>Seconds: " . $_SESSION["seconds"];
 
 
