@@ -5,24 +5,14 @@ session_start();
 
 include 'variables.php';
 include 'func_turn.php';
-
-
-
 ?>
 
 
 <html>
 
-<style>
-
-u {
-	color:gray;
-	text-decoration:none;
-}
-
-<!-- Any colored text showing up on the page is for testing (so I can follow the numbers) and should be removed in the final game. -->
-
-</style>
+	<style>
+	<!-- Any colored text showing up on the page is for testing (so I can follow the numbers) and should be removed in the final game. -->
+	</style>
 
 <body>
 
@@ -36,9 +26,9 @@ It's the new craze sweeping Neopia - buy your cheese from the cheese shop, and t
 
 	<p><b>DISTANCE TO FINISH LINE</b> : <?php echo $distance . "m"; ?>
 	<br><b>TIME TAKEN</b> : <?php echo $time . "s"; ?> 
-	<!-- These aren't printing, and ultimately they won't be, but why aren't they???? 
-	<br><b>BONUS</b> : <?php echo $bonus . "lps"; ?> 
-	<br><b>PENALTY</b> : <?php echo $penalty . "s"; ?> -->
+	<!-- These aren't printing, and ultimately they won't be, but why aren't they???? -->
+	<br><b>BONUS</b> : <?php echo $_SESSION["bonus"] . "lps"; ?> 
+	<br><b>PENALTY</b> : <?php echo $_SESSION["penalty"] . "s"; ?> 
 
 
 
@@ -52,6 +42,7 @@ It's the new craze sweeping Neopia - buy your cheese from the cheese shop, and t
 		if(isset($_POST['options'])) {
         $_SESSION['choice'] = $_POST['options'];
 		$choice = $_SESSION['choice'];
+		roller($choice);
 		}
 		?> 
 	</select> 

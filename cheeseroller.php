@@ -7,12 +7,6 @@ include 'variables.php';
 
 
 
-
-
-
-
-
-
 ?>
 
 
@@ -105,6 +99,10 @@ if (isset($_POST['cheese']) && !empty($_POST['cheese'])) {
 	} else {
 			return null;
 		}
+
+
+
+
 
 ?>
 

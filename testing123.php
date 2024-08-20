@@ -1,29 +1,48 @@
 <?php
 
-session_start();
-
-/*
-if (isset($_POST['input_cheese'])) {
-	$someID = $_POST['input_cheese'];
-	$_SESSION['set_cheese'] = $someID;
-	$cheese = $_SESSION['set_cheese'];
-	echo $cheese;
+// check if the form was submitted
+if (isset($_POST['submit_button'])) {
+    $a = $_POST['update'];
+    echo $a;
 }
-*/
+else {
+    
+?>
 
-if (isset($_POST['cheese'])) {
-	$set_cheese = $_POST['cheese'];
-	$_SESSION['cheese'] = $set_cheese;
-	$cheese = $_SESSION['cheese'];
-	echo $cheese;
-}
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"> <!-- notice the updated action -->
+	<select name="options" cols="30" rows="4" id="update" maxlength="200"> 
+		<?php 
+		$options = array("Forward Somersault", "Push Cheese Faster", "Hold Cheese Steady", "Dive Left", "Dive Right"); 
+		foreach ($options as $choice) { 
+			echo "<option value='$choice'>$choice</option>";			
+		}
+		if(isset($_POST['options'])) {
+        $_SESSION['choice'] = $_POST['options'];
+		$choice = $_SESSION['choice'];
+		roller($choice);
+		}
+		?> 
+	</select> 
+<br />
+<input name="submit_button" type="submit"  value=" Update "  id="update_button"  class="update_button"/> <!-- notice added name="" -->
+</form>
+
+<?php
+
+} // end "else" loop
 
 ?>
 
-<center>
-<form action='testing123.php' method='post'>
-<b>Enter name of cheese</b><br>
-  <input type='text' name='cheese'>
-  <input type='submit'>
-</form>
-</center>
+	<select name="options" id="update"> 
+		<?php 
+		$options = array("Forward Somersault", "Push Cheese Faster", "Hold Cheese Steady", "Dive Left", "Dive Right"); 
+		foreach ($options as $choice) { 
+			echo "<option value='$choice'>$choice</option>";			
+		}
+		if(isset($_POST['options'])) {
+        $_SESSION['choice'] = $_POST['options'];
+		$choice = $_SESSION['choice'];
+		roller($choice);
+		}
+		?> 
+	</select> 

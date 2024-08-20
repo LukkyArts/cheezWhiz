@@ -31,37 +31,54 @@ $results = array(
 
 
 
+
 function roller($choice) {
 	switch ($choice) {
 		case $choice === "Forward Somersault":
 			$set_roll = rand(0, 4);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
-			echo "Roll: " . $roll . "<br>"; //remove
+			
+			$set_outcome = $results[$roll][1];
+			$_SESSION['outcome'] = $set_outcome;
+			$outcome = $_SESSION['outcome'];
 			break;
 		case $choice === "Push Cheese Faster":
 			$set_roll = rand(4, 8);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
-			echo "Roll: " . $roll . "<br>"; //remove
+			
+			$set_outcome = $results[$roll][1];
+			$_SESSION['outcome'] = $set_outcome;
+			$outcome = $_SESSION['outcome'];
+
 			break;
 		case $choice === "Hold Cheese Steady":
 			$set_roll = rand(8, 12);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
-			echo "Roll: " . $roll . "<br>"; //remove
+			
+			$set_outcome = $results[$roll][1];
+			$_SESSION['outcome'] = $set_outcome;
+			$outcome = $_SESSION['outcome'];
 			break;
 		case $choice === "Dive Left":
 			$set_roll = rand(12, 16);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
-			echo "Roll: " . $roll . "<br>"; //remove
+			
+			$set_outcome = $results[$roll][1];
+			$_SESSION['outcome'] = $set_outcome;
+			$outcome = $_SESSION['outcome'];
 			break;
 		case $choice === "Dive Right":
 			$set_roll = rand(16, 20);
 			$_SESSION['roll'] = $set_roll;
 			$roll = $_SESSION['roll'];
-			echo "Roll: " . $roll . "<br>"; //remove
+			
+			$set_outcome = $results[$roll][1];
+			$_SESSION['outcome'] = $set_outcome;
+			$outcome = $_SESSION['outcome'];
 			break;
 		default:
 			echo "You have to make a choice!";
@@ -71,6 +88,21 @@ function roller($choice) {
 }
 
 
+function turn($roll) {
+	while ($distance > 0) {
+		//$set_distance = $distance - 10;
+		//$_SESSION['distance'] = $set_distance;
+		//$distance = $_SESSION['distance'];
+		
+		$set_outcome = $results[$roll][1];
+		$_SESSION['outcome'] = $set_outcome;
+		$outcome = $_SESSION['outcome'];
+		
+		$set_seconds = $results[$roll][0];
+		$_SESSION['seconds'] = $set_seconds;
+		$roll = $_SESSION['seconds'];
+	}
+}
 
 /*
 
