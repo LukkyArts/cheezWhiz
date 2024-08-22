@@ -33,76 +33,99 @@ $results = array(
 
 
 function roller($choice) {
-	switch ($choice) {
-		case $choice === "Forward Somersault":
-			$set_roll = rand(0, 4);
-			$_SESSION['roll'] = $set_roll;
-			$roll = $_SESSION['roll'];
+	if($_SESSION['distance'] > 0) {
+		switch ($choice) {
+			case $choice === "Forward Somersault":
 			
-			$set_outcome = $results[$roll][1];
-			$_SESSION['outcome'] = $set_outcome;
-			$outcome = $_SESSION['outcome'];
-			break;
-		case $choice === "Push Cheese Faster":
-			$set_roll = rand(4, 8);
-			$_SESSION['roll'] = $set_roll;
-			$roll = $_SESSION['roll'];
-			
-			$set_outcome = $results[$roll][1];
-			$_SESSION['outcome'] = $set_outcome;
-			$outcome = $_SESSION['outcome'];
+				$set_roll = rand(0, 4);
+				$_SESSION['roll'] = $set_roll;
+				$roll = $_SESSION['roll'];
+				turn($roll);
 
-			break;
-		case $choice === "Hold Cheese Steady":
-			$set_roll = rand(8, 12);
-			$_SESSION['roll'] = $set_roll;
-			$roll = $_SESSION['roll'];
-			
-			$set_outcome = $results[$roll][1];
-			$_SESSION['outcome'] = $set_outcome;
-			$outcome = $_SESSION['outcome'];
-			break;
-		case $choice === "Dive Left":
-			$set_roll = rand(12, 16);
-			$_SESSION['roll'] = $set_roll;
-			$roll = $_SESSION['roll'];
-			
-			$set_outcome = $results[$roll][1];
-			$_SESSION['outcome'] = $set_outcome;
-			$outcome = $_SESSION['outcome'];
-			break;
-		case $choice === "Dive Right":
-			$set_roll = rand(16, 20);
-			$_SESSION['roll'] = $set_roll;
-			$roll = $_SESSION['roll'];
-			
-			$set_outcome = $results[$roll][1];
-			$_SESSION['outcome'] = $set_outcome;
-			$outcome = $_SESSION['outcome'];
-			break;
-		default:
-			echo "You have to make a choice!";
-			return null;
-			break;
+				break;
+			case $choice === "Push Cheese Faster":
+				$set_roll = rand(4, 8);
+				$_SESSION['roll'] = $set_roll;
+				$roll = $_SESSION['roll'];
+				turn($roll);
+
+				break;
+			case $choice === "Hold Cheese Steady":
+				$set_roll = rand(8, 12);
+				$_SESSION['roll'] = $set_roll;
+				$roll = $_SESSION['roll'];
+				turn($roll);
+				
+				break;
+			case $choice === "Dive Left":
+				$set_roll = rand(12, 16);
+				$_SESSION['roll'] = $set_roll;
+				$roll = $_SESSION['roll'];
+				turn($roll);
+				
+				break;
+			case $choice === "Dive Right":
+				$set_roll = rand(16, 20);
+				$_SESSION['roll'] = $set_roll;
+				$roll = $_SESSION['roll'];
+				turn($roll);
+
+				break;
+			default:
+				return null;
+				break;
+		}
+	} else {
+		echo "Rewards!"; 
+		// if ($jackpot > 0) {award $jackpot}
+		// If ($time < 60) {award $cheese}
 	}
 }
 
+function turn($roll){
+	global $results;
+	
+	$set_distance = $_SESSION['distance'] - 10;
+	$_SESSION['distance'] = $set_distance;
+	$distance = $_SESSION['distance'];
+	
+	// Choose Flavor text
+	$set_outcome = $results[$roll][1];
+	$_SESSION['outcome'] = $set_outcome;
+	$outcome = $_SESSION['outcome'];
+				
+	// Choose how many seconds the turn takes minus penalty
+	$set_seconds = $results[$roll][0] + $penalty;
+	$_SESSION['seconds'] = $set_seconds;
+	$seconds = $_SESSION['seconds'];
+	
+	// Reduce Jackpot by 30 per second and the time penalty, add bonus
+	$set_jackpot = max($_SESSION['jackpot'] - ($seconds * 30) + $bonus, 0);
+	$_SESSION['jackpot'] = $set_jackpot;
+	$jackpot = $_SESSION['jackpot'];
+	
+	// Add seconds to the time
+	$set_time = $_SESSION['time'] + $seconds;
+	$_SESSION['time'] = $set_time;
+	$time = $_SESSION['time'];
+}
 
-function turn($roll) {
-	while ($distance > 0) {
+
+
+
+/*
+ {
 		//$set_distance = $distance - 10;
 		//$_SESSION['distance'] = $set_distance;
 		//$distance = $_SESSION['distance'];
-		
+		global $results;
 		$set_outcome = $results[$roll][1];
 		$_SESSION['outcome'] = $set_outcome;
 		$outcome = $_SESSION['outcome'];
-		
-		$set_seconds = $results[$roll][0];
-		$_SESSION['seconds'] = $set_seconds;
-		$roll = $_SESSION['seconds'];
-	}
 }
+*/
+
+
 
 /*
 
@@ -115,27 +138,8 @@ function turn($roll) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function turn($roll) {
 
-	$turn = &$turn + 1;
 	$distance = &$distance - 10;
 	$jackpot = &$jackpot - (30 * $results[$roll][0]) - $penalty;
 	$time = &$time - ($penalty + $results[$roll][0]);

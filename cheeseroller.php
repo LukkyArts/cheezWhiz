@@ -4,7 +4,8 @@ session_start(); // starts the session
 
 include 'variables.php';
 
-
+// Cheeses array is a workaround to replace the database. 
+include 'arr_cheeselist.php';
 
 
 ?>
@@ -12,49 +13,53 @@ include 'variables.php';
 
 
 <html>
-
-<style>
-
-u {
-	color:gray;
-	text-decoration:none;
-}
-
-<!-- Any colored text showing up on the page is for testing (so I can follow the numbers) and should be removed in the final game. -->
-
-</style>
-
 <body>
 
 <h1>Cheeseroller</h1>
-<p>
-It's the new craze sweeping Neopia - buy your cheese from the cheese shop, and then see how fast you can run down a hill with it. It's that simple! If you manage to get down the hill in under a minute, you get to keep the cheese!
 
-<p>
+<p>It's the new craze sweeping Neopia - buy your cheese from the cheese shop, and then see how fast you can run down a hill with it. It's that simple! If you manage to get down the hill in under a minute, you get to keep the cheese!
 
 <center>
-<form action='cheeseroller.php' method='post'>
-<b>Enter name of cheese</b><br>
-  <input type='text' name='cheese'><br>
-  <input type='submit'>
-</form>
-</center>
+<p><b>Games played:</b> 0/10
+
+
+
+<p>
 
 
 
 <?php
 
 
+if (!isset($_POST['cheese']) && empty($_POST['cheese'])) {
+echo "<img src='cheese_maker_welcome.png'>
+<br><form action='cheeseroller.php' method='post'>
 
+<p><b>Which cheese do you wish to purchase?</b><br>
+  <input type='text' name='cheese'><br>
+  <input type='submit'>
+</form>
 
-// Cheeses array is a workaround to replace the database. 
-include 'arr_cheeselist.php';
+<p><a href=''>High Scores</a>
+";
+} elseif (isset($_POST['cheese']) && !empty($_POST['cheese'])) { // !empty should be replaced by $cheeseitem
 
-// User confirms that their cheese is correct. 
-if (isset($_POST['cheese']) && !empty($_POST['cheese'])) {
+	$set_jackpot = 5000; 	// Decreased 30 * $seconds each turn
+	$_SESSION['jackpot'] = $set_jackpot;
+	$jackpot = $_SESSION['jackpot'];
+
+	$set_distance = 120; 	// Decreased by 10 each turn 
+	$_SESSION['distance'] = $set_distance;
+	$distance = $_SESSION['distance'];
+
+	$set_time = 0; 	// Increases by $seconds + $penalty each turn
+	$_SESSION['time'] = $set_time;
+	$time = $_SESSION['time'];
+	
 	$set_cheese = $_POST['cheese'];
 	$_SESSION['cheese'] = $set_cheese;
 	$cheese = $_SESSION['cheese'];
+	
 	$set_price = $cheeselist[$set_cheese];
 	$_SESSION['price'] = $set_price;
 	$price = $_SESSION['price'];
@@ -90,18 +95,63 @@ if (isset($_POST['cheese']) && !empty($_POST['cheese'])) {
 	$_SESSION['penalty'] = $set_penalty;
 	$penalty = $_SESSION['penalty'];
 	}
-	echo "<center><b>Cheese:</b> $cheese <br>";
-	echo "<b>Price: $price <br>";
-	echo "<h3>Is this correct? </h3>";
-	echo "<form method='post' action='cheesegame.php'>
-  <input type='submit' name='start' value='Yes!'>
-</form></center>";
+	echo "<img src='cheese_maker_yes.png'>
+	<p><b>Yes, you must mean ${cheese}!</b>
+	<br>We do have some of that!
+	<br>[-Image of your cheese here-]
+	<br><b>Price:</b> $price <br>
+	<h3>Is this the cheese you want?</h3>
+	<form method='post' action='cheesegame.php'>
+	<input type='submit' name='start' value='Yes!'>
+	</form>
+
+	<p><form action='cheeseroller.php' method='post'>
+	<p><b>... or enter another cheese</b>
+	<br><input type='text' name='cheese'>
+	<br><input type='submit'>
+	</form>";
+
 	} else {
-			return null;
+		echo "<img src='cheese_maker_no.png'>
+	<p><b>Come again?
+	<p><form action='cheeseroller.php' method='post'>
+	<br><input type='text' name='cheese'>
+	<br><input type='submit'>
+	</form>";
 		}
 
+/*
 
+I don't have a way to workaround this until it's on the server, but this checks if the item is a cheeseitem. 
 
+ $cheeseItem = Item::findBy(['name' => $cheese, 'type' => 'cheese']); 
+  if (!$cheeseItem) {
+	echo "<img src='cheese_maker_no.png'>
+	<p><b>Come again?
+
+	<p><form action='cheeseroller.php' method='post'>
+	<p><b>... or enter another cheese</b>
+	<br><input type='text' name='cheese'>
+	<br><input type='submit'>
+	</form>";
+} else {
+	echo "<img src='cheese_maker_yes.png'>
+	<p><b>Yes, you must mean ${cheese}!
+	<br>We do have some of that!
+	<br>[-Image of your cheese here-]
+	<br><b>Price: $price <br>
+	<h3>Is this the cheese you want?</h3>
+	<form method='post' action='cheesegame.php'>
+	<input type='submit' name='start' value='Yes!'>
+	</form>
+
+	<p><form action='cheeseroller.php' method='post'>
+	<p><b>... or enter another cheese</b>
+	<br><input type='text' name='cheese'>
+	<br><input type='submit'>
+	</form>";
+}
+*/
 
 
 ?>
@@ -109,6 +159,8 @@ if (isset($_POST['cheese']) && !empty($_POST['cheese'])) {
 
 
 
+
+</center>
 
 
 
@@ -121,63 +173,3 @@ if (isset($_POST['cheese']) && !empty($_POST['cheese'])) {
 
 
 
-
-
-
-<!--
- /*		Database validation to be added.
-
-	$cheeseItem = Item::findBy(['name' => $user_cheese, 'type' => 'cheese']); 
-		if (!$cheeseItem) {
-			echo "Sorry, I don't have a cheese with that name.";
-		} else {
-			echo "You have chosen ${user_Cheese}! Let's get rolling!";
-		}
-
-
-function createBonus ($price) {
-	if ($price != 0) {
-		switch ($price) {
-			case $price >= 5000:
-			$set_bonus = 50; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
-			break;
-		case $price >= 4000:
-			$set_bonus = 40; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
-			break;
-		case $price >= 3000:
-			$set_bonus = 30; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
-			break;
-		case $price >= 2000:
-			$set_bonus = 20; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
-			break;
-		case $price >= 1000:
-			$set_bonus = 10; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
-			break;
-		default:
-			$set_bonus = 0; 			
-			$_SESSION['bonus'] = $set_bonus;
-			$bonus = $_SESSION['bonus'];
-			break;
-		}
-	}
-}
-	
-
-if (isset($_POST['start'])) {
-	createBonus($price);
-	return $bonus;
-}
-*/
-
-
--->

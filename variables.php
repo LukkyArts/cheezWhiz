@@ -1,7 +1,20 @@
 <?php
 
+/*
+$jackpot = 5000; 	// Decreased 30 * $seconds each turn
+$_SESSION['jackpot'] = $set_jackpot;
+$jackpot = $_SESSION['jackpot'];
 
-$jackpot = 5000;
+$set_distance = 120000; 	// Decreased by 10 each turn 
+$_SESSION['distance'] = $set_distance;
+$distance = $_SESSION['distance'];
+
+$set_time = 0; 	// Increases by $seconds + $penalty each turn
+$_SESSION['time'] = $set_time;
+$time = $_SESSION['time'];
+*/
+
+$jackpot = 50000000;
 $distance = 120;
 $time = 0;
 
@@ -24,17 +37,7 @@ $seconds = 0;
 /*
 Expanded;
 
-$set_jackpot = 5000; 	// Decreased 30 * $seconds each turn
-$_SESSION['jackpot'] = $set_jackpot;
-$jackpot = $_SESSION['jackpot'];
 
-$set_distance = 120; 	// Decreased by 10 each turn 
-$_SESSION['distance'] = $set_distance;
-$distance = $_SESSION['distance'];
-
-$set_time = 0; 	// Increases by $seconds + $penalty each turn
-$_SESSION['time'] = $set_time;
-$time = $_SESSION['time'];
 
 
 
@@ -82,21 +85,26 @@ $ = $_SESSION[''];
 */
 
 //Session information. Not intended to be visible to user. 
-echo "<br>Jackpot: " . $_SESSION["jackpot"];
-echo "<br>Distance: " . $_SESSION["distance"];
-echo "<br>Time: " . $_SESSION["time"];
 
-echo "<br>Cheese: " . $_SESSION["cheese"];
-echo "<br>Price: " . $_SESSION["price"];
-echo "<br>Bonus: " . $_SESSION["bonus"];
-echo "<br>Penalty: " . $_SESSION["penalty"];
+if (isset($_SESSION['jackpot'])) { echo "<br>Jackpot: " . $_SESSION["jackpot"];}
+if (isset($_SESSION['distance'])) { echo "<br>Distance: " . $_SESSION["distance"];}
+if (isset($_SESSION['time'])) { echo "<br>Time: " . $_SESSION["time"];}
 
-echo "<br>Choice: " . $_SESSION["choice"];
-echo "<br>Roll: " . $_SESSION["roll"];
-echo "<br>Outcome: " . $_SESSION["outcome"];
-echo "<br>Seconds: " . $_SESSION["seconds"];
+if (isset($_SESSION['cheese'])) { echo "<br>Cheese: " . $_SESSION["cheese"];}
+if (isset($_SESSION['price'])) { echo "<br>Price: " . $_SESSION["price"];}
+if (isset($_SESSION['bonus'])) { echo "<br>Bonus: " . $_SESSION["bonus"];}
+if (isset($_SESSION['penalty'])) { echo "<br>Penalty: " . $_SESSION["penalty"];}
 
-
-
-
+if (isset($_SESSION['choice'])) { echo "<br>Choice: " . $_SESSION["choice"];}
+if (isset($_SESSION['roll'])) { echo "<br>Roll: " . $_SESSION["roll"];}
+if (isset($_SESSION['seconds'])) { echo "<br>Seconds: " . $_SESSION["seconds"];}
 ?>
+
+<form action="cheeseroller.php" method="POST">
+<?php
+if(isset($_POST['clear'])){
+$_SESSION = [];
+}
+?>
+    <input type="submit" name="clear" value="Clear session" />
+</form>

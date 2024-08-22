@@ -46,3 +46,18 @@ else {
 		}
 		?> 
 	</select> 
+	
+	
+	
+	<!--
+<form action="cheeseroller.php" method="POST">
+<?php
+if(isset($_POST['clear'])){
+$_SESSION = [];
+}
+?>
+    <input type="submit" name="clear" value="Clear session" />
+</form>
+
+</center>
+-->
