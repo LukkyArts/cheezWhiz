@@ -1,7 +1,5 @@
 <?php
 
-$active_pet_name = "<u>Chimaera</u>"; // Remove
-
 //Array table that holds all possible results from the action() function. 
 //Option 0 is a duplicate of Option 20 on purpose. Each choice shares the first and last choices with their neighbors. 
 
@@ -76,7 +74,7 @@ function roller($choice) {
 				break;
 		}
 	} else {
-		echo "Rewards!"; 
+		echo "Error"; 
 		// if ($jackpot > 0) {award $jackpot}
 		// If ($time < 60) {award $cheese}
 	}
@@ -108,54 +106,14 @@ function turn($roll){
 	$set_time = $_SESSION['time'] + $seconds;
 	$_SESSION['time'] = $set_time;
 	$time = $_SESSION['time'];
+	
+	header("Refresh:0");
 }
 
 
 
 
-/*
- {
-		//$set_distance = $distance - 10;
-		//$_SESSION['distance'] = $set_distance;
-		//$distance = $_SESSION['distance'];
-		global $results;
-		$set_outcome = $results[$roll][1];
-		$_SESSION['outcome'] = $set_outcome;
-		$outcome = $_SESSION['outcome'];
-}
-*/
 
 
-
-/*
-
-			$set_outcome = $results[$roll][1];
-			$_SESSION['outcome'] = $set_outcome;
-			$outcome = $_SESSION['outcome'];
-			echo "Outcome: " . $outcome . "<br>";
-
-
-
-
-
-function turn($roll) {
-
-	$distance = &$distance - 10;
-	$jackpot = &$jackpot - (30 * $results[$roll][0]) - $penalty;
-	$time = &$time - ($penalty + $results[$roll][0]);
-	echo "<p><center>
-	<b>DISTANCE TO FINISH LINE</b> : ${distance}m
-	<br><b>TIME TAKEN</b> : ${time}s
-	<br><b>TURN:</b> : ${turn}
-	<p>";
-	echo "<b>Cheese:</b> " . $user_cheese . "<br>";
-	echo "<b>Price:</b> " . $price . "<br>";
-	echo "<b>Bonus:</b> " . $bonus . "<br>"; //remove
-	echo "<b>Penalty:</b> " . $penalty . "<br>"; //remove;
-}
-
-echo turn($roll);
-
-*/
 
 ?>

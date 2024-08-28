@@ -1,5 +1,7 @@
 <?php
 
+// THIS FILE IS WORKING CORRECTLY
+
 session_start(); // starts the session
 
 include 'variables.php';
@@ -32,7 +34,7 @@ include 'arr_cheeselist.php';
 
 
 if (!isset($_POST['cheese']) && empty($_POST['cheese'])) {
-echo "<img src='cheese_maker_welcome.png'>
+echo "<img src='images/cheese_maker_welcome.png'>
 <br><form action='cheeseroller.php' method='post'>
 
 <p><b>Which cheese do you wish to purchase?</b><br>
@@ -95,14 +97,18 @@ echo "<img src='cheese_maker_welcome.png'>
 	$_SESSION['penalty'] = $set_penalty;
 	$penalty = $_SESSION['penalty'];
 	}
-	echo "<img src='cheese_maker_yes.png'>
+	echo "<img src='images/cheese_maker_yes.png'>
 	<p><b>Yes, you must mean ${cheese}!</b>
 	<br>We do have some of that!
 	<br>[-Image of your cheese here-]
 	<br><b>Price:</b> $price <br>
 	<h3>Is this the cheese you want?</h3>
 	<form method='post' action='cheesegame.php'>
-	<input type='submit' name='start' value='Yes!'>
+	<input type='submit' name='yes' value='Yes! - works'>
+	</form>
+	
+	<form method='post' action='cheesegame_broken.php'>
+	<input type='submit' name='yes' value='Yes! - broken'>
 	</form>
 
 	<p><form action='cheeseroller.php' method='post'>
@@ -111,14 +117,22 @@ echo "<img src='cheese_maker_welcome.png'>
 	<br><input type='submit'>
 	</form>";
 
+	} elseif (isset($_POST['yes'])) {
+		include 'start.php';
+		
 	} else {
-		echo "<img src='cheese_maker_no.png'>
+		echo "<img src='images/cheese_maker_no.png'>
 	<p><b>Come again?
 	<p><form action='cheeseroller.php' method='post'>
 	<br><input type='text' name='cheese'>
 	<br><input type='submit'>
 	</form>";
 		}
+
+
+
+
+
 
 /*
 

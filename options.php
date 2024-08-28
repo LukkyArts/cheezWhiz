@@ -20,11 +20,10 @@ if(isset($_SESSION['outcome'])) {
 		if(isset($_POST['options'])) {
 			$_SESSION['choice'] = $_POST['options'];
 			$choice = $_SESSION['choice'];
-			include 'func_turn.php';
 			roller($choice);
 		}
 		?> 
 	</select> 
-  <input type='submit' name="play" value='Go!'></input>
+	<input type='submit' name="play" value='Go!'></input>
 </form> 
 
