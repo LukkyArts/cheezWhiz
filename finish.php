@@ -1,68 +1,67 @@
 
-<?php
 
-
-
-
-?>
-
-
-<img src='finish_cheese_race.png'>
+<img src='images/finish_cheese_race.png'>
 
 <br><b>You Finished in <?php echo $_SESSION['time']; ?>  seconds!!!</b>
 
-
 <p><b>Your Score :</b> <?php echo $_SESSION['jackpot']; ?>
-<small>(and you win that many Leopoints!)</small>
+<br><small>(and you win that many Leopoints!)</small>
 
-Your Rating : <?php 
+<p>Your Rating : <?php 
 if ($_SESSION['time'] > 0) {
-		switch ($time) {
+		switch (true) {
 			case $_SESSION['time'] <= 50:
 			echo "CHEESEMASTER!";
-		break;
+			break;
 			case $_SESSION['time'] <= 52:
 			echo "Head Cheese";
-		break;
+			break;
 			case $_SESSION['time'] <= 54:
 			echo "Awesome!";
-		break;
+			break;
 			case $_SESSION['time'] <= 56:
 			echo "Fantastic";
-		break;
+			break;
 			case $_SESSION['time'] <= 58:
 			echo "Brill";
-		break;
+			break;
 			case $_SESSION['time'] <= 60:
 			echo "Great";
-		break;
+			break;
 			case $_SESSION['time'] <= 63:
 			echo "Cheeseriffic";
-		break;
+			break;
 			case $_SESSION['time'] <= 66:
 			echo "Cheesy";
-		break;
+			break;
 			case $_SESSION['time'] <= 70:
 			echo "Moldy";
-		break;
+			break;
 			case $_SESSION['time'] <= 75:
 			echo "Could do Better";
-		break;
+			break;
 			case $_SESSION['time'] <= 80:
 			echo "Awful";
-		break;
+			break;
 			case $_SESSION['time'] <= 85:
 			echo "Pathetic";
-		break;
+			break;
 			case $_SESSION['time'] <= 90:
 			echo "TERRIBLE";
-		break;
-			case $_SESSION['time'] <= 50:
-			echo "Beyond Redemption";
-		break;
+			break;
 			default:
-			echo "404 Rating Not Found"
+			echo "Beyond Redemption";
 			break;
 		}
 }
+
 ?>
+
+<form action="cheeseroller.php" method="POST">
+<?php
+if(isset($_POST['clear'])){
+$_SESSION = [];
+}
+?>
+    <input type="submit" name="clear" value="Clear session" />
+</form>

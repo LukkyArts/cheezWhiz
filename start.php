@@ -1,5 +1,5 @@
 
-<p><img src='start_cheese_race.png'>
+<p><img src='images/start_cheese_race.png'>
 <br>3... 2... 1...
 
 <p><form method='post' action='cheesegame.php'>

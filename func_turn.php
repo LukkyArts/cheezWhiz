@@ -82,6 +82,8 @@ function roller($choice) {
 
 function turn($roll){
 	global $results;
+	global $penalty;
+	global $bonus;
 	
 	$set_distance = $_SESSION['distance'] - 10;
 	$_SESSION['distance'] = $set_distance;

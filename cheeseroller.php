@@ -4,7 +4,7 @@
 
 session_start(); // starts the session
 
-include 'variables.php';
+// include 'variables.php';
 
 // Cheeses array is a workaround to replace the database. 
 include 'arr_cheeselist.php';
@@ -104,13 +104,9 @@ echo "<img src='images/cheese_maker_welcome.png'>
 	<br><b>Price:</b> $price <br>
 	<h3>Is this the cheese you want?</h3>
 	<form method='post' action='cheesegame.php'>
-	<input type='submit' name='yes' value='Yes! - works'>
+	<input type='submit' name='yes' value='Yes!'>
 	</form>
 	
-	<form method='post' action='cheesegame_broken.php'>
-	<input type='submit' name='yes' value='Yes! - broken'>
-	</form>
-
 	<p><form action='cheeseroller.php' method='post'>
 	<p><b>... or enter another cheese</b>
 	<br><input type='text' name='cheese'>

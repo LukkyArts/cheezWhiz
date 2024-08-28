@@ -1,24 +1,5 @@
 <?php
 
-$jackpot = 5000;
-$distance = 120;
-$time = 0;
-
-$start = "";
-
-$cheese = "";
-$price = 0; 	
-$bonus = 0; 	
-$penalty = 0; 	
-
-$choice = "";
-$roll = 0; 			
-$outcome = "";		
-$seconds = 0; 	
-
-$active_pet_name = "<b>Chimaera</b>"; // Remove
-
-
 /*
 Blank Session-saving lines:
 
