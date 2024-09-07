@@ -4,6 +4,7 @@
 session_start();
 
 // include 'variables.php';
+
 ?>
 
 
@@ -16,15 +17,9 @@ It's the new craze sweeping Neopia - buy your cheese from the cheese shop, and t
 
 <center>
 <?php
-if($_SESSION['distance'] === 120 && !isset($_SESSION['start'])){
-	include 'start.php';
-	$set_start = true;
-	$_SESSION['start'] = $set_start;
-	$start = $_SESSION['start'];
-} elseif ($_SESSION['distance'] === 0) {
+if($_SESSION['distance'] === 0){
 	include 'finish.php';
 } else {
-	
 	echo "<p><img src='images/cheese_slope.png'>";
 	echo "<p><b>DISTANCE TO FINISH LINE</b> : " . $_SESSION['distance'] . "m";
 	echo "<br><b>TIME TAKEN</b> : " . $_SESSION['time'] . "s";
@@ -48,6 +43,9 @@ if($_SESSION['distance'] === 120 && !isset($_SESSION['start'])){
 </form>";
 }
 
+/*
+
+*/
 
 ?>
 	

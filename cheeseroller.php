@@ -97,25 +97,23 @@ echo "<img src='images/cheese_maker_welcome.png'>
 	$_SESSION['penalty'] = $set_penalty;
 	$penalty = $_SESSION['penalty'];
 	}
+	//Image of cheese needs to be pulled from DB.
 	echo "<img src='images/cheese_maker_yes.png'>
 	<p><b>Yes, you must mean ${cheese}!</b>
 	<br>We do have some of that!
-	<br>[-Image of your cheese here-]
+	<br>[-Image of your cheese here-] 
 	<br><b>Price:</b> $price <br>
 	<h3>Is this the cheese you want?</h3>
-	<form method='post' action='cheesegame.php'>
+	<form method='post' action='start.php'>
 	<input type='submit' name='yes' value='Yes!'>
 	</form>
 	
-	<p><form action='cheeseroller.php' method='post'>
+	<p><form action='start.php' method='post'>
 	<p><b>... or enter another cheese</b>
 	<br><input type='text' name='cheese'>
 	<br><input type='submit'>
 	</form>";
 
-	} elseif (isset($_POST['yes'])) {
-		include 'start.php';
-		
 	} else {
 		echo "<img src='images/cheese_maker_no.png'>
 	<p><b>Come again?

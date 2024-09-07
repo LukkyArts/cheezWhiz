@@ -1,5 +1,5 @@
 
-<p><img src='cheese_slope.png'>
+<p><img src='images/cheese_slope.png'>
 
 <p><b>DISTANCE TO FINISH LINE</b> : <?php echo $_SESSION['distance'] . "m"; ?>
 <br><b>TIME TAKEN</b> : <?php echo $_SESSION['time'] . "s"; ?> 

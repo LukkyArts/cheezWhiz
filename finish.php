@@ -63,5 +63,5 @@ if(isset($_POST['clear'])){
 $_SESSION = [];
 }
 ?>
-    <input type="submit" name="clear" value="Clear session" />
+    <input type="submit" name="clear" value="Play again!" />
 </form>

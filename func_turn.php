@@ -75,8 +75,6 @@ function roller($choice) {
 		}
 	} else {
 		echo "Error"; 
-		// if ($jackpot > 0) {award $jackpot}
-		// If ($time < 60) {award $cheese}
 	}
 }
 
