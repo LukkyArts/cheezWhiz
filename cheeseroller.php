@@ -46,7 +46,7 @@ echo "<img src='images/cheese_maker_welcome.png'>
 ";
 } elseif (isset($_POST['cheese']) && !empty($_POST['cheese'])) { // !empty should be replaced by $cheeseitem
 
-	$set_jackpot = 5000; 	// Decreased 30 * $seconds each turn
+	$set_jackpot = 6000; 	// Decreased 30 * $seconds each turn
 	$_SESSION['jackpot'] = $set_jackpot;
 	$jackpot = $_SESSION['jackpot'];
 

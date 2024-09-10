@@ -2,7 +2,7 @@
 
 session_start();
 
-include 'variables.php';
+// include 'variables.php';
 ?>
 
 <html>
@@ -26,14 +26,6 @@ include 'variables.php';
 	<input type="submit" name="go" value='Go!'>
 	</input>
 </form>
-
-<?php
-if (isset($_POST['go'])) {
-	$_SESSION['go'] = "Go!";
-	$go = $_SESSION['go'];
-}
-
-?>
 
 </center>
 
